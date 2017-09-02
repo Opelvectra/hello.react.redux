@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FuelSavingsResults from './FuelSavingsResults';
+import Button from 'react-bootstrap/lib/Button';
 import FuelSavingsTextInput from './FuelSavingsTextInput';
 
 class FuelSavingsForm extends React.Component {
@@ -81,6 +82,7 @@ class FuelSavingsForm extends React.Component {
 
         {fuelSavings.necessaryDataIsProvidedToCalculateSavings && <FuelSavingsResults savings={fuelSavings.savings}/>}
         <input type="submit" value="Save" onClick={this.save}/>
+        <Button bsStyle="primary" bsSize="large" active>Primary button</Button>
       </div>
     );
   }
