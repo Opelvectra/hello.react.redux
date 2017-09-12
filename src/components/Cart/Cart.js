@@ -1,20 +1,20 @@
 import React from 'react';
 import timelineApi from '../../apiHelpers/timeline';
-import './timeline.scss';
+import './cart.scss';
 import StorageFactory from '../../utils/StorageFactory';
 
-class Timeline extends React.Component {
+class Cart extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
       topics: []
     };
-    this.updateTimeline = this.updateTimeline.bind(this);
+    this.updateCartList = this.updateCartList.bind(this);
     this.addToCart = this.addToCart.bind(this);
-    this.removeToCart = this.removeToCart.bind(this);
+    this.removeFromCart = this.removeFromCart.bind(this);
   }
 
-  updateTimeline() {
+  updateCartList() {
     timelineApi.timeline()
       .then(res => {
         // eslint-disable-next-line no-console
@@ -33,22 +33,22 @@ class Timeline extends React.Component {
     updateIsInCartState(e, true, this);
   }
 
-  removeToCart(e){
+  removeFromCart(e){
     updateIsInCartState(e, false, this);
   }
 
   componentDidMount() {
-    this.updateTimeline();
+    this.updateCartList();
   }
 
   render() {
     let that = this;
-    let topicsSize = this.state.topics.map((topic, index) =>
+    let topics = this.state.topics.filter(item => item.isInCart).map((topic, index) =>
       <div key={index} className={'timeline-item'}>
         <div className={'timeline-item-title'}>{topic.title || 'Title'}</div>
-        <div className={'timeline-image'}>
+        <div className={'cart-image'}>
           <img src={'http://localhost:8002/' + topic.imageUrl} />
-          {getActionButton(topic)}
+          <button className={'timeline-item-is-in-cart'} onClick={that.removeFromCart} value={topic.id}>remove from cart</button>
         </div>
         <div className={'timeline-item-description'}>{topic.description}</div>
         <div></div>
@@ -58,22 +58,12 @@ class Timeline extends React.Component {
     return (
       <div>
         <div>
-          {topicsSize}
+          {topics.length ? topics : (
+            <div>Your cart is empty</div>
+          )}
         </div>
       </div>
     );
-
-    function getActionButton(dogItem){
-      if(dogItem.isInCart){
-        return (
-          <button className={'timeline-item-is-in-cart'} onClick={that.removeToCart} value={dogItem.id}>remove from cart</button>
-        );
-      } else {
-        return (
-          <button className={'timeline-item-add-to-cart'} onClick={that.addToCart} value={dogItem.id}>add to cart</button>
-        );
-      }
-    }
   }
 }
 
@@ -92,4 +82,4 @@ function updateIsInCartState(e, newState, context){
   }
 }
 
-export default Timeline;
+export default Cart;

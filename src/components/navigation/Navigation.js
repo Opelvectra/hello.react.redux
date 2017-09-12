@@ -23,9 +23,9 @@ class Navigation extends React.Component {
                 Home
               </NavItem>
             </IndexLinkContainer>
-            <LinkContainer to="/fuel-savings">
+            <LinkContainer to="/cart">
               <NavItem>
-                Fuel Savings
+                Cart(?)
               </NavItem>
             </LinkContainer>
             <LinkContainer to="/about">
