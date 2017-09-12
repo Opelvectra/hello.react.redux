@@ -8,13 +8,31 @@
   }
 }
 
-.timeline-item {
+.cart-empty-container {
+  background-color: grey;
+  color: #eee;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.cart-item {
   margin-bottom: 40px;
 }
 
-.timeline-item-title {
-  font-size: 20px;
+.cart-item-title {
+  font-size: 18px;
   font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.buy-bttn{
+  float: right;
+}
+
+.cart-total-container{
+  float: left;
+  font-size: 26px;
+  color: red;
 }
 
 .timeline-item-description {
@@ -46,4 +64,15 @@
   @extend .timeline-item-cart-action;
 }
 
+.cart-item-price {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  font-size: 20px;
+  color: #bbd2ca;
+}
+
+.cart-total-panel {
+  margin-top: 40px;
+}
 

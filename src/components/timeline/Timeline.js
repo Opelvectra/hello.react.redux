@@ -49,6 +49,7 @@ class Timeline extends React.Component {
         <div className={'timeline-image'}>
           <img src={'http://localhost:8002/' + topic.imageUrl} />
           {getActionButton(topic)}
+          <div className={'dog-item-price'}>${topic.price}</div>
         </div>
         <div className={'timeline-item-description'}>{topic.description}</div>
         <div></div>
