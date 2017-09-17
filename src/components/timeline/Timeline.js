@@ -80,7 +80,7 @@ class Timeline extends React.Component {
 
 function updateIsInCartState(e, newState, context){
   if(e.target && e.target.value !== undefined){
-    let cartItems = StorageFactory.getObject('cartItems');
+    let cartItems = StorageFactory.getObject('cartItems') || {};
     cartItems[e.target.value] = newState;
     StorageFactory.saveObject('cartItems', cartItems);
     context.setState({
