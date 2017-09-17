@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 import fuelSavings from './fuelSavingsReducer';
-import cartItems from './cartItemsReducer';
+import products from './productsReducer';
+import cartItemsIds from './cartItemsIdsReducer';
 import {routerReducer} from 'react-router-redux';
 
 const rootReducer = combineReducers({
   fuelSavings,
-  cartItems,
+  products,
+  cartItemsIds,
   routing: routerReducer
 });
 

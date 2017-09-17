@@ -1,6 +1,8 @@
 import React from 'react';
 import { LinkContainer, IndexLinkContainer } from 'react-router-bootstrap';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
+import {connect} from 'react-redux';
+import cartService from '../Cart/cartService';
 
 class Navigation extends React.Component {
   constructor(props, context) {
@@ -8,6 +10,11 @@ class Navigation extends React.Component {
   }
 
   render() {
+    let cartItemsIds = cartService.getCartItems();
+    let cartItems = this.props.products.filter(function(el){
+      return cartItemsIds.some(cartItemId => cartItemId.toString() === el.id.toString());
+    });
+
     return (
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
@@ -25,12 +32,12 @@ class Navigation extends React.Component {
             </IndexLinkContainer>
             <LinkContainer to="/cart">
               <NavItem>
-                Cart(?)
+                Cart({cartItems.length})
               </NavItem>
             </LinkContainer>
-            <LinkContainer to="/about">
+            <LinkContainer to="/fuel-savings">
               <NavItem>
-                Contacts
+                fuel-savings
               </NavItem>
             </LinkContainer>
           </Nav>
@@ -43,4 +50,14 @@ class Navigation extends React.Component {
   }
 }
 
-export default Navigation;
+function mapStateToProps(state) {
+  return {
+    cartItems: state.cartItems,
+    products: state.products,
+    cartItemsIds: state.cartItemsIds
+  };
+}
+
+export default connect(
+  mapStateToProps
+)(Navigation);
