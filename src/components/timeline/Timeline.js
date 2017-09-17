@@ -2,6 +2,9 @@ import React from 'react';
 import timelineApi from '../../apiHelpers/timeline';
 import './timeline.scss';
 import StorageFactory from '../../utils/StorageFactory';
+import {bindActionCreators} from 'redux';
+import * as cartItemsActions from '../../actions/cartItemsActions';
+import {connect} from 'react-redux';
 
 class Timeline extends React.Component {
   constructor(props, context) {
@@ -31,6 +34,12 @@ class Timeline extends React.Component {
 
   addToCart(e) {
     updateIsInCartState(e, true, this);
+    if(e && e.target){
+      cartItemsActions.addCartItem({
+        id: e.target.value,
+        atata: 'atata!'
+      });
+    }
   }
 
   removeToCart(e){
@@ -43,6 +52,7 @@ class Timeline extends React.Component {
 
   render() {
     let that = this;
+    console.log(this.props);
     let topicsSize = this.state.topics.map((topic, index) =>
       <div key={index} className={'timeline-item'}>
         <div className={'timeline-item-title'}>{topic.title || 'Title'}</div>
@@ -93,4 +103,19 @@ function updateIsInCartState(e, newState, context){
   }
 }
 
-export default Timeline;
+function mapStateToProps(state) {
+  return {
+    cartItems: state.cartItems
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(cartItemsActions, dispatch)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Timeline);
