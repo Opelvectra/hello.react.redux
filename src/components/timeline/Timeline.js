@@ -35,7 +35,7 @@ class Timeline extends React.Component {
   addToCart(e) {
     updateIsInCartState(e, true, this);
     if(e && e.target){
-      cartItemsActions.addCartItem({
+      this.props.cartItemsActions.addCartItem({
         id: e.target.value,
         atata: 'atata!'
       });
@@ -111,7 +111,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(cartItemsActions, dispatch)
+    cartItemsActions: bindActionCreators(cartItemsActions, dispatch)
   };
 }
 
