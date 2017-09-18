@@ -8,9 +8,6 @@ import cartService from '../cart/cartService';
 class Timeline extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {
-      topics: []
-    };
     this.addToCart = this.addToCart.bind(this);
     this.removeToCart = this.removeToCart.bind(this);
   }
