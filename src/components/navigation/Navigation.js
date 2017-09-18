@@ -2,7 +2,7 @@ import React from 'react';
 import { LinkContainer, IndexLinkContainer } from 'react-router-bootstrap';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import {connect} from 'react-redux';
-import cartService from '../Cart/cartService';
+import cartService from '../cart/cartService';
 
 class Navigation extends React.Component {
   constructor(props, context) {
@@ -38,6 +38,11 @@ class Navigation extends React.Component {
             <LinkContainer to="/fuel-savings">
               <NavItem>
                 fuel-savings
+              </NavItem>
+            </LinkContainer>
+            <LinkContainer to="/about">
+              <NavItem>
+                about
               </NavItem>
             </LinkContainer>
           </Nav>

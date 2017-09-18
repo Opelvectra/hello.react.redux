@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import './timeline.scss';
 import * as cartItemsIdsActions from '../../actions/cartItemsIdsActions';
-import cartService from '../Cart/cartService';
+import cartService from '../cart/cartService';
 
 class Timeline extends React.Component {
   constructor(props, context) {
